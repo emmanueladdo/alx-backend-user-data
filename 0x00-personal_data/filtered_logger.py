@@ -5,6 +5,9 @@ Function returns the Log Messages
 import re
 from typing import List
 import logging
+import mysql.connector 
+import os
+from mysql.connector.connection import MySQLConnection
 
 PII_FIELDS = ("name", "email", "phone", "ssn", "password")
 
@@ -62,3 +65,25 @@ def get_logger() -> logging.Logger:
     logger.addHandler(stream_handler)
 
     return logger
+
+
+def get_db() -> MySQLConnection:
+    """
+    Function to connect to the MySQL database using environment variables.
+    
+    Returns:
+    - mysql.connector.connection.MySQLConnection: Database connector object.
+    """
+    username: str = os.getenv("PERSONAL_DATA_DB_USERNAME", "root")
+    password: str = os.getenv("PERSONAL_DATA_DB_PASSWORD", "")
+    host: str = os.getenv("PERSONAL_DATA_DB_HOST", "localhost")
+    db_name: str = os.getenv("PERSONAL_DATA_DB_NAME")
+
+    connector: MySQLConnection = mysql.connector.connect(
+        user=username,
+        password=password,
+        host=host,
+        database=db_name
+    )
+
+    return connector
