@@ -22,5 +22,6 @@ def filter_datum(fields: List[str], redaction: str, message: str,
     """
     for element in fields:
         replace = "{}={}{}".format(element, redaction, separator)
-        message = re.sub("{}=.*?{}".format(element, separator), replace, message)
+        message = re.sub("{}=.*?{}".format(element, separator),
+                         replace, message)
     return message
