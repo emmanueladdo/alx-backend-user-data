@@ -5,7 +5,8 @@ Function returns the Log Messages
 import re
 
 
-def filter_datum(fields, redaction, message, separator):
+def filter_datum(fields: List[str], redaction: str, message: str,
+                 separator: str) -> str:
     """
     Obfuscate specified fields in the log message using regex.
 
@@ -18,7 +19,7 @@ def filter_datum(fields, redaction, message, separator):
     Returns:
     - String: Obfuscated log message.
     """
-    for item in fields:
-        replace = "{}={}{}".format(item, redaction, separator)
-        message = re.sub("{}=.*?{}".format(item, separator), replace, message)
+    for field in fields:
+        replace = "{}={}{}".format(field, redaction, separator)
+        message = re.sub("{}=.*?{}".format(field, separator), replace, message)
     return message
