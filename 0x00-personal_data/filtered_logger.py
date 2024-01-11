@@ -5,7 +5,7 @@ Function returns the Log Messages
 import re
 from typing import List
 import logging
-import mysql.connector 
+import mysql.connector
 import os
 from mysql.connector.connection import MySQLConnection
 
@@ -70,7 +70,7 @@ def get_logger() -> logging.Logger:
 def get_db() -> MySQLConnection:
     """
     Function to connect to the MySQL database using environment variables.
-    
+
     Returns:
     - mysql.connector.connection.MySQLConnection: Database connector object.
     """
