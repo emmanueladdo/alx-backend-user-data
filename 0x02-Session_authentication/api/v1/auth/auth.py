@@ -33,7 +33,6 @@ class Auth():
         """ current user"""
         return None
 
-
     def session_cookie(self, request=None):
         """
         function returns cookie value from a request
@@ -42,4 +41,3 @@ class Auth():
             return None
         _my_session_id = getenv("SESSION_NAME")
         return request.cookies.get(_my_session_id)
-    
