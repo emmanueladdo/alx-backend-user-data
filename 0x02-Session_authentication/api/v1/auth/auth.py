@@ -4,6 +4,7 @@ manages the API authentication
 """
 from flask import request
 from typing import List, TypeVar
+from os import getenv
 
 
 class Auth():
@@ -41,3 +42,4 @@ class Auth():
             return None
         _my_session_id = getenv("SESSION_NAME")
         return request.cookies.get(_my_session_id)
+    
