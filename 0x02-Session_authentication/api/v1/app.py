@@ -62,7 +62,7 @@ elif getenv("AUTH_TYPE", None) == "session_auth":
 
 @app.before_request
 def before_request() -> str:
-    """before the request handler"""
+    """before request handler"""
     if auth is None:
         return
     excluded_paths = ['/api/v1/status/',
@@ -70,9 +70,9 @@ def before_request() -> str:
                       '/api/v1/forbidden/']
     if not auth.require_auth(request.path, excluded_paths):
         return
-    if auth.authorization_header(request) is None and \
-       not auth.session_cookie(request):
-        abort(401)
+    if (not auth.authorization_header(request) and
+                not auth.session_cookie(request)):
+            abort(401)
     if auth.current_user(request) is None:
         abort(403)
     request.current_user = auth.current_user(request)
