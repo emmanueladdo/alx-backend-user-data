@@ -55,6 +55,11 @@ if getenv("AUTH_TYPE", None) == "basic_auth":
     auth = BasicAuth()
 
 
+elif getenv("AUTH_TYPE", None) == "session_auth":
+    from api.v1.auth.session_auth import SessionAuth
+    auth = SessionAuth()
+
+
 @app.before_request
 def before_request() -> str:
     """before request handler"""
@@ -69,6 +74,7 @@ def before_request() -> str:
         abort(401)
     if auth.current_user(request) is None:
         abort(403)
+    request.current_user = auth.current_user(request)
 
 
 if __name__ == "__main__":
