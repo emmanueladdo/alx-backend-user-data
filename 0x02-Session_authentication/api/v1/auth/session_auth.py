@@ -12,6 +12,7 @@ from api.v1.auth.auth import Auth
 from models.user import User
 from uuid import uuid4
 
+
 class SessionAuth(Auth):
     """Session Auth Class
 
@@ -72,7 +73,8 @@ class SessionAuth(Auth):
             request: Flask request object
 
         Returns:
-            bool: True if the session is successfully destroyed, False otherwise
+            bool: True if the session
+            is successfully destroyed, False otherwise
         """
         if request is None:
             return None
