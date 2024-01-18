@@ -6,7 +6,7 @@ from flask import request
 from typing import List, TypeVar
 
 
-class auth():
+class Auth():
     """
     Class that defines the authenication of API
     """
