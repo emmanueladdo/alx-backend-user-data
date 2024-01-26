@@ -64,4 +64,3 @@ class DB:
             except NoResultFound:
                 pass
             return None
-        
